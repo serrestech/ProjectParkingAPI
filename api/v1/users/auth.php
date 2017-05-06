@@ -79,6 +79,25 @@
 
 	}
 
+	// Find user's ID from user's Username
+	function findIDFromUsername($Username) {
+		$Query = "SELECT * FROM users WHERE username='$Username'";
+		$Result = mysql_query($Query);
+
+		$Row = mysql_fetch_array($Result);
+		return $Row['id'];
+	}
+
+	// Find user's ID from user's eMail
+	function findIDFromMail($eMail) {
+		$Query = "SELECT * FROM users WHERE email='$eMail'";
+		$Result = mysql_query($Query);
+
+		$Row = mysql_fetch_array($Result);
+		return $Row['id'];
+
+	}
+
 	// Find if this user is authorized
 	function isAuthorized($Username, $Token) {
 		$Query = "SELECT * FROM users WHERE usernmae='$Username'";
