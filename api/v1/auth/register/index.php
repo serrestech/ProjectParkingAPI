@@ -3,19 +3,7 @@
 	require_once("../../../../config.php");
 	enableJSON();
 
-	function isRegisteredMail($eMail) {
-		$Query = "SELECT * FROM users WHERE email='$eMail'";
-		if(mysql_num_rows(mysql_query($Query)) == 1) {
-			return true;
-		}
-	}
-
-	function isRegisteredUsername($Username) {
-		$Query = "SELECT * FROM users WHERE username='$Username'";
-		if(mysql_num_rows(mysql_query($Query)) == 1) {
-			return true;
-		}
-	}
+	require_once("../auth.php");
 
 	if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
 
@@ -23,14 +11,10 @@
 		$eMail = $_POST['email'];
 		$Password = md5($_POST['password']);
 
-		if(isRegisteredUsername($Username)) {
+		if(isRegisteredUsername($Username) || isRegisteredMail($eMail)) {
 			$ObjectJSON->Status = "BAD";
 			$ObjectJSON->Token = md5("BAD");
-			$ObjectJSON->Message = "This username is used ! Use other username !";
-		} else if (isRegisteredMail($eMail)) {
-			$ObjectJSON->Status = "BAD";
-			$ObjectJSON->Token = md5("BAD");
-			$ObjectJSON->Message = "This email is used ! Use other email !";
+			$ObjectJSON->Message = "This username or email is used ! Use other username and/or email !";
 		} else {
 			$Query = "INSERT INTO users(username,password, email) VALUES ('$Username','$Password','$eMail')";
 
