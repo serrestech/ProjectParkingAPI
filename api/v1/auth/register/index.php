@@ -7,7 +7,7 @@
 
 	if(isset($_GET['email']) && isset($_GET['username']) && isset($_GET['password'])) {
 
-		$Username = "debuguser";
+		$Username = $_GET['username'];
 		$eMail = $_GET['email'];
 		$Password = md5($_GET['password']);
 
