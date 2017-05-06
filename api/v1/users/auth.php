@@ -95,7 +95,7 @@
 
 	// Find if this user is authorized
 	function isAuthorized($Username, $Token) {
-		$Query = "SELECT * FROM users WHERE usernmae='$Username'";
+		$Query = "SELECT * FROM users WHERE username='$Username'";
 		$Row = mysql_fetch_array(mysql_query($Query));
 		if($Token == md5($Username + $Row['password'])) {
 			return true;
