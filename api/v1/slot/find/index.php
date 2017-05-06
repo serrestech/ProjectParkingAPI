@@ -7,16 +7,25 @@
 
 		
 		$Latitude = $_POST['latitude'];
-		$Longitude = ($_POST['longitude']);
-		$City = ($_POST['city']);
-		$Address = ($_POST['address']);
-		$Startlat = ($_POST['startlat']);
-		$Startlng = ($_POST['startlng']);
+		$Longitude = $_POST['longitude'];
+		$City = $_POST['city'];
+		$Address = $_POST['address'];
+		$Startlat = $_POST['startlat'];
+		$Startlng = $_POST['startlng'];
 
-		$Query = "	SELECT latitude, longitude, SQRT(
-    					POW(69.1 * (latitude - [startlat]), 2) +
-    					POW(69.1 * ([startlng] - longitude) * COS(latitude / 57.3), 2)) AS distance
-					FROM slots HAVING distance < 25 ;";
+		//$pow1 = POW(69.1 * (latitude - [$Startlat]), 2);
+		//$pow2 = POW(69.1 * ([$Startlng] - longitude) * COS(latitude / 57.3), 2)
+
+
+
+		echo $pow1;
+
+
+		$Query = "SELECT latitude, longitude,  SQRT(
+						POW(69.1 * (latitude - $Startlat), 2)
+    				 + 	POW(69.1 * ($Startlng - longitude) * COS(latitude / 57.3), 2)
+    					) AS distance
+					FROM slots HAVING distance < 25  ORDER BY distance";
 
 		$Result = mysql_query($Query)  or die("Query didnt execute");
 
