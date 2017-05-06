@@ -15,9 +15,9 @@
 		$ObjectJSON->Message = "Comments Found";
 		$Counter = 0;
 		while($Row = mysql_fetch_array($Result)) {
-			$ObjectJSON->Users[$Counter]->FromUser = $Row['fromuser'];
-			$ObjectJSON->Users[$Counter]->ToUser = $Row['touser'];
-			$ObjectJSON->Users[$Counter]->Content = $Row['content'];
+			$ObjectJSON->Comments[$Counter]->FromUser = $Row['fromuser'];
+			$ObjectJSON->Comments[$Counter]->ToUser = $Row['touser'];
+			$ObjectJSON->Comments[$Counter]->Content = $Row['content'];
 			$Counter++;
 		}
 	}
