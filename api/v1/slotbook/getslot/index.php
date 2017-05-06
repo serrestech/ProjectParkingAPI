@@ -1,9 +1,9 @@
-<?php
+ <?php
 	
 	require_once("../../../../config.php");
 	enableJSON();
 
-	if(isset($_POST['userid']) && isset($_POST['plate']) && isset($_POST['brand']) && isset($_POST['model']) 0) {
+	if(isset($_GET['userid']) && isset($_GET['plate']) ) {
 
 		
 		$Userid = $_POST['userid'];

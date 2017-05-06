@@ -3,13 +3,13 @@
 	require_once("../../../../config.php");
 	enableJSON();
 
-	if(isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['address'])) {
+	if(isset($_GET['latitude']) && isset($_GET['longitude']) && isset($_GET['city']) && isset($_GET['address'])) {
 
 		
-		$Latitude = $_POST['latitude'];
-		$Longitude = ($_POST['longitude']);
-		$City = ($_POST['city']);
-		$Address = ($_POST['address']);
+		$Latitude = $_GET['latitude'];
+		$Longitude = ($_GET['longitude']);
+		$City = ($_GET['city']);
+		$Address = ($_GET['address']);
 
 		$Query = "INSERT INTO slots(,latitude,longitude,city,address) VALUES ('$latitude','$longitude','$city','$address')";
 
