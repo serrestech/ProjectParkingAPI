@@ -1,6 +1,6 @@
 <?php
 
-	$Host = "snf-750694.vm.okeanos.grnet.gr";
+	$Host = "next-tech.techlimittv.eu";
 	$Username = "NextTech";
 	$Password = "1215123@GJK";
 	$DBName = "ProjectParking";
