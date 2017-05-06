@@ -11,10 +11,10 @@
 
 	if(mysql_num_rows($Result) == 0) {
 		$ObjectJSON->Status = "BAD";
-		$ObjectJSON->Message = "No Users Found";
+		$ObjectJSON->Message = "We can't find users !";
 	} else {
 		$ObjectJSON->Status = "OK";
-		$ObjectJSON->Message = "Users Found";
+		$ObjectJSON->Message = "We find those users !";
 		$Counter = 0;
 		while($Row = mysql_fetch_array($Result)) {
 			$ObjectJSON->Users[$Counter]->ID = $Row['id'];

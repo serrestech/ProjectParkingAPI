@@ -6,11 +6,27 @@
 	require_once("../auth.php");
 
 	if(isset($_GET['id'])) {
-		$Query
+		$ID = $_GET['id'];
+		if(isIDValid($ID)) {
+			$ObjectJSON->Status = "OK";
+			$ObjectJSON->Message = "User Found !";
+
+			$Query = "SELECT * FROM users WHERE id='$ID'";
+
+			$Row = mysql_fetch_array(mysql_query($Query));
+
+			$ObjectJSON->ID = $Row['id'];
+			$ObjectJSON->Username = $Row['username'];
+			$ObjectJSON->eMail = $Row['email'];
+			$ObjectJSON->Mobile = $Row['mobile'];
+
+		} else {
+			$ObjectJSON->Status = "BAD";
+			$ObjectJSON->Message = "There is no user with this id !";
+		}
 	} else {
 		$ObjectJSON->Status = "BAD";
-		$ObjectJSON->Message = "You must give id using GET method !";
-
+		$ObjectJSON->Message = "You must give username using GET method !";
 	}
 
 	printJSON($ObjectJSON);
