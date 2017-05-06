@@ -5,9 +5,9 @@
 
 	require_once("../auth.php");
 
-	if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+	if(isset($_POST['email']) && isset($_POST['password'])) {
 
-		$Username = $_POST["username"];
+		$Username = "debuguser";
 		$eMail = $_POST['email'];
 		$Password = md5($_POST['password']);
 
@@ -28,7 +28,7 @@
 	} else {
 		$ObjectJSON->Status = "BAD";
 		$ObjectJSON->Token = md5("BAD");
-		$ObjectJSON->Message = "You must give username, email and password using POST method !";
+		$ObjectJSON->Message = "You must give email and password using POST method !";
 		
 	}
 
