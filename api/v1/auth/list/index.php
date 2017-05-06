@@ -17,6 +17,7 @@
 		$ObjectJSON->Message = "Users Found";
 		$Counter = 0;
 		while($Row = mysql_fetch_array($Result)) {
+			$ObjectJSON->Users[$Counter]->ID = $Row['id'];
 			$ObjectJSON->Users[$Counter]->Username = $Row['username'];
 			$ObjectJSON->Users[$Counter]->eMail = $Row['email'];
 			$ObjectJSON->Users[$Counter]->Mobile = $Row['mobile'];

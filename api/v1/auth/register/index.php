@@ -5,11 +5,11 @@
 
 	require_once("../auth.php");
 
-	if(isset($_POST['email']) && isset($_POST['password'])) {
+	if(isset($_GET['email']) && isset($_GET['username']) && isset($_GET['password'])) {
 
 		$Username = "debuguser";
-		$eMail = $_POST['email'];
-		$Password = md5($_POST['password']);
+		$eMail = $_GET['email'];
+		$Password = md5($_GET['password']);
 
 		if(isRegisteredUsername($Username) || isRegisteredMail($eMail)) {
 			$ObjectJSON->Status = "BAD";
@@ -28,7 +28,7 @@
 	} else {
 		$ObjectJSON->Status = "BAD";
 		$ObjectJSON->Token = md5("BAD");
-		$ObjectJSON->Message = "You must give email and password using POST method !";
+		$ObjectJSON->Message = "You must give email and password using GET method !";
 		
 	}
 
