@@ -1,4 +1,8 @@
 <?php
+
+	function isIncluded() {
+		echo "YEESS";
+	}
 	
 	// Check if there is a user with this ID
 	function isRegisteredID($ID) {
@@ -49,15 +53,6 @@
     	} else {
     		return true;
     	}
-	}
-
-	// Check if this is a valid password
-	function isValidPassword($Password) {
-		if (strlen($Password) < 8) {
-	        return false;
-	    } else {
-	    	return true;
-	    }
 	}
 
 	// Find user's Username from user's ID

@@ -1,5 +1,9 @@
 <?php
 
+	// Desc : Show all users through MySQL Server
+	// Input : Nothing
+	// Output : Status, Message, Users [id,username,email,mobile]
+
 	require_once("../../../../config.php");
 	enableJSON();
 

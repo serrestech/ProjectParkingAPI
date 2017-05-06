@@ -33,7 +33,6 @@
 
 				if(isValidUsername($Username)) {
 					if(isValidMail($eMail)) {
-						if(isValidPassword($Password)) {
 							$Query = "INSERT INTO users(username,password, email) VALUES ('$Username','$Password','$eMail')";
 
 							$Result = mysql_query($Query);
@@ -41,11 +40,6 @@
 							$ObjectJSON->Status = "OK";
 							$ObjectJSON->Token = md5($Username.$Password);
 							$ObjectJSON->Message = "You have successfully registered !";
-						} else {
-							$ObjectJSON->Status = "BAD";
-							$ObjectJSON->Token = md5("BAD");
-							$ObjectJSON->Message = "This is not a valid password !";
-						}
 					} else {
 						$ObjectJSON->Status = "BAD";
 						$ObjectJSON->Token = md5("BAD");
