@@ -3,11 +3,9 @@
 	require_once("../../../../config.php");
 	enableJSON();
 
-	if(isset($_GET['startlat']) && isset($_GET['startlng']) && isset($_GET['username']) && isset($_GET['token'])) {
+	if(isset($_GET['startlat']) && isset($_GET['startlng']) && isset($_GET['token'])) {
 
 		
-
-		$Username = $_GET['username'];
 		$Token = $_GET['token'];
 		$Startlat = $_GET['startlat'];
 		$Startlng = $_GET['startlng'];
@@ -16,7 +14,7 @@
 
 
 
-		if(isAuthorized($Username,$Token)){
+		if(isAuthorized($Token)){
 
 
 

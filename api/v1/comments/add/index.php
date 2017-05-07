@@ -1,7 +1,7 @@
 <?php
 
 	// Desc : Add Comment from One User to Other through MySQL Server
-	// Input : User's Name as username, User's Token as token, Other User's ID ad touser, Comment as content
+	// Input : User's Token as token, Other User's ID ad touser, Comment as content
 	// Output : Status, Message
 
 	require_once("../../../../config.php");
@@ -9,7 +9,7 @@
 
 	enableJSON();
 
-	if(isset($_GET['username']) && isset($_GET['token']) && isset($_GET['touser']) && isset($_GET['content'])) {
+	if(isset($_GET['token']) && isset($_GET['touser']) && isset($_GET['content'])) {
 
 		$Username = $_GET['username'];
 		$Token = $_GET['token'];

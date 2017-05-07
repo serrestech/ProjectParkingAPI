@@ -92,16 +92,19 @@
 
 	}
 
-	// Find if this user is authorized
-	function isAuthorized($Username, $Token) {
-		$Query = "SELECT * FROM users WHERE username='$Username'";
+	// Find user's ID from user's Token
+	function findIDFromToken($Token) {
+		$Query = "SELECT * FROM users WHERE token='$Token'";
 		$Row = mysql_fetch_array(mysql_query($Query));
+
+		return $Row['id'];
+	}
+
+	// Find if this user is authorized
+	function isAuthorized($Token) {
+		$Query = "SELECT * FROM users WHERE token='$Token'";
+		return true;
 		
-		if($Token == md5($Username . $Row['password'])) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 ?>
