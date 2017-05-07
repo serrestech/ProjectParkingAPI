@@ -23,7 +23,7 @@
 		
 		if(isAuthorized($Username,$Token)){
 			 $Userid = findIDFromUsername($Username);
-			 $Query = "UPDATE slots SET userid = $Userid, status = 'claimed';";
+			 $Query = "UPDATE slots SET userid = $Userid, status = 'reserve';";
 			 $Result = mysql_query($Query)  or die("Query didnt execute");
 
 		}
