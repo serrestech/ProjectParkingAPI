@@ -3,13 +3,12 @@
 	require_once("../../../../config.php");
 	enableJSON();
 
-	if(isset($_GET['startlat']) && isset($_GET['startlng'])) {
+	if(isset($_GET['startlat']) && isset($_GET['startlng']) && isset($_GET['username']) && isset($_GET['token'])) {
 
 		
-		$Latitude = $_GET['latitude'];
-		$Longitude = $_GET['longitude'];
-		$City = $_GET['city'];
-		$Address = $_GET['address'];
+
+		$Username = $_GET['username'];
+		$Token = $_GET['token'];
 		$Startlat = $_GET['startlat'];
 		$Startlng = $_GET['startlng'];
 
@@ -17,7 +16,9 @@
 
 
 
-		
+		if(isAuthorized($Username,$Token)){
+
+
 
 
 		$Query = "SELECT latitude, longitude,  SQRT(
@@ -31,12 +32,16 @@
 		$ObjectJSON->Status = "OK";
 		$ObjectJSON->latitude = ($latitude);
 		$ObjectJSON->longitude = ($longitude);
-		$ObjectJSON->Token = md5($Carid);
 		$ObjectJSON->Message = "Succesfully inserted";	
+
+		}
+
+		else{
+			echo "User is unauthorized" ;
+		}
 
 	} else {
 		$ObjectJSON->Status = "BAD";
-		$ObjectJSON->Token = md5("NOHITS");
 		$ObjectJSON->Message = "There where no hits found in this area";
 		
 	}

@@ -11,17 +11,23 @@
 		$City = ($_GET['city']);
 		$Address = ($_GET['address']);
 
-		$Query = "INSERT INTO slots(,latitude,longitude,city,address) VALUES ('$latitude','$longitude','$city','$address')";
+		if(isAuthorized($Username,$Token)){
 
-		$Result = mysql_query($Query);
+			$Query = "INSERT INTO slots(latitude,longitude,city,address) VALUES ('$Latitude','$Longitude','$City','$Address')";
 
-		$ObjectJSON->Status = "OK";
-		$ObjectJSON->Token = md5($Carid);
-		$ObjectJSON->Message = "Succesfully inserted";	
+			$Result = mysql_query($Query);
+
+			$ObjectJSON->Status = "OK";
+		
+			$ObjectJSON->Message = "Succesfully inserted";	
+		}
+
+		else{
+			echo "User is unauthorized";
+		}
 
 	} else {
 		$ObjectJSON->Status = "BAD";
-		$ObjectJSON->Token = md5("BAD");
 		$ObjectJSON->Message = "You must give , latitude, longitude, city and address using POST method";
 		
 	}

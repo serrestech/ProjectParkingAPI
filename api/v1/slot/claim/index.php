@@ -1,39 +1,45 @@
  <?php
 	
 	require_once("../../../../config.php");
-	//require_once("");
+	require_once("../../../../api/v1/users/auth.php");
+	
 
 	enableJSON();
 
-	if(isset($_GET['userid']) && isset($_GET['plate']) ) {
+
+
+	if(isset($_GET['token']) && isset($_GET['username']) && isset($_GET['slotid'])) {
 
 		
-		$Userid = $_POST['userid'];
-		$Plate = $_POST['plate'];
-		$Brand = $_POST['brand'];
-		$Model = $_POST['model'];
 		
-
-
-
-
-
+		$Username = $_GET['username'];
+		$Token = $_GET['token'];
+		$Slotid = $_GET['slotid'];
 		
+		
+		if(isAuthorized($Username,$Token)){
+			 $Userid = findIDFromUsername($Username);
+			 $Query = "UPDATE slots SET userid = $Userid;";
+			 $Result = mysql_query($Query)  or die("Query didnt execute");
+
+		}
+
+		else{
+			$ObjectJSON->Status = "BAD";
+		
+			$ObjectJSON->Message = "Not authorized";
+
+		}
 
 
-		$Query = " ";
 
-		$Result = mysql_query($Query)  or die("Query didnt execute");
-
-		$ObjectJSON->Status = "OK";
-		$ObjectJSON->latitude = ($latitude);
-		$ObjectJSON->longitude = ($longitude);
-		$ObjectJSON->Token = md5($Carid);
-		$ObjectJSON->Message = "Succesfully inserted";	
 
 	} else {
-		$ObjectJSON->Status = "No hits found";
-		$ObjectJSON->Token = md5("NOHITS");
-		$ObjectJSON->Message = "There where no hits found in this area";
+		$ObjectJSON->Status = "BAD";
+		
+		$ObjectJSON->Message = "You must give username, token and slotid";
 		
 	}
+
+	printJSON($ObjectJSON);
+?>
