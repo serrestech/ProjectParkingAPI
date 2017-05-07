@@ -1,4 +1,10 @@
 <?php
+	
+	
+	//Description -> Inserts a parking slot into the database.
+ 	//Input -> latitude longitude city adress of the parking slot.
+ 	//Output ->JSON obj file with status and a message.
+	
 
 	require_once("../../../../config.php");
 	enableJSON();
