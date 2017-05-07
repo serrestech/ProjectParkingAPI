@@ -1,4 +1,8 @@
  <?php
+
+ 	//Description -> Claims the free parking slot by seting userid in slots table equal to the  id of User that claims it.
+ 	//Input -> token, username, slotid.
+ 	//Output ->JSON obj file with status and a message.
 	
 	require_once("../../../../config.php");
 	require_once("../../../../api/v1/users/auth.php");
@@ -19,7 +23,7 @@
 		
 		if(isAuthorized($Username,$Token)){
 			 $Userid = findIDFromUsername($Username);
-			 $Query = "UPDATE slots SET userid = $Userid;";
+			 $Query = "UPDATE slots SET userid = $Userid, status = 'claimed';";
 			 $Result = mysql_query($Query)  or die("Query didnt execute");
 
 		}

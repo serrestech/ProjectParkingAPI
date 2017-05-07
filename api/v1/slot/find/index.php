@@ -1,5 +1,11 @@
 <?php
 	
+	//Description -> Finds free parking slots within the range(distance) submitted on the sql Query.
+ 	//Input -> token, latitude and longitude of User's target.
+ 	//Output ->free parking slots.
+	
+	
+
 	require_once("../../../../config.php");
 	require_once("../../../../api/v1/users/auth.php");
 
@@ -19,7 +25,10 @@
 						POW(69.1 * (latitude - $Startlat), 2)
     				 + 	POW(69.1 * ($Startlng - longitude) * COS(latitude / 57.3), 2)
     					) AS distance
-					FROM slots HAVING distance < 25  ORDER BY distance";
+					FROM slots
+					WHERE status = 'free' 
+					HAVING distance < 25  
+					ORDER BY distance";
 
 			$Result = mysql_query($Query);
 
