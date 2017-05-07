@@ -33,8 +33,8 @@
 			
 				$Count = 0;
 				while($Row = mysql_fetch_array($Result)) {
-					$ObjectJSON->Slots[$Count]->Longitude = $Row['Longitude'];
-					$ObjectJSON->Slots[$Count]->Latitude = $Row['Latitude'];
+					$ObjectJSON->Slots[$Count]->Longitude = $Row['longitude'];
+					$ObjectJSON->Slots[$Count]->Latitude = $Row['latitude'];
 					$Count++;
 				}
 			}
