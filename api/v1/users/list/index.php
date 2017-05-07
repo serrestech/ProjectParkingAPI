@@ -19,7 +19,9 @@
 	} else {
 		$ObjectJSON->Status = "OK";
 		$ObjectJSON->Message = "We find those users !";
+
 		$Counter = 0;
+		
 		while($Row = mysql_fetch_array($Result)) {
 			$ObjectJSON->Users[$Counter]->ID = $Row['id'];
 			$ObjectJSON->Users[$Counter]->Username = $Row['username'];

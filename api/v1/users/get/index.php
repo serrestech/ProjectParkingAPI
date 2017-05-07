@@ -1,5 +1,9 @@
 <?php
 
+	// Desc : Show User's Info through MySQL Server
+	// Input : User's ID as id
+	// Output : Status, Message, id, username, email, mobile
+
 	require_once("../../../../config.php");
 	enableJSON();
 
@@ -7,7 +11,7 @@
 
 	if(isset($_GET['id'])) {
 		$ID = $_GET['id'];
-		if(isIDValid($ID)) {
+		if(isRegisteredID($ID)) {
 			$ObjectJSON->Status = "OK";
 			$ObjectJSON->Message = "User Found !";
 

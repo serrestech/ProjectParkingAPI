@@ -1,12 +1,9 @@
 <?php
-
-	function isIncluded() {
-		echo "YEESS";
-	}
 	
 	// Check if there is a user with this ID
 	function isRegisteredID($ID) {
 		$Query = "SELECT * FROM users WHERE id='$ID'";
+
 		if(mysql_num_rows(mysql_query($Query)) == 1) {
 			return true;
 		} else {
@@ -17,6 +14,7 @@
 	// Check if there is a user with this Username
 	function isRegisteredUsername($Username) {
 		$Query = "SELECT * FROM users WHERE username='$Username'";
+
 		if(mysql_num_rows(mysql_query($Query)) == 1) {
 			return true;
 		} else {
@@ -27,6 +25,7 @@
 	// Check if there is a user with this eMail
 	function isRegisteredMail($eMail) {
 		$Query = "SELECT * FROM users WHERE email='$eMail'";
+
 		if(mysql_num_rows(mysql_query($Query)) == 1) {
 			return true;
 		} else {
@@ -59,8 +58,8 @@
 	function findUsernameFromID($ID) {
 		$Query = "SELECT * FROM users WHERE id='$ID'";
 		$Result = mysql_query($Query);
-
 		$Row = mysql_fetch_array($Result);
+
 		return $Row['username'];
 	}
 
@@ -68,8 +67,8 @@
 	function findUsernameFromMail($eMail) {
 		$Query = "SELECT * FROM users WHERE email='$eMail'";
 		$Result = mysql_query($Query);
-
 		$Row = mysql_fetch_array($Result);
+
 		return $Row['username'];
 
 	}
@@ -78,8 +77,8 @@
 	function findIDFromUsername($Username) {
 		$Query = "SELECT * FROM users WHERE username='$Username'";
 		$Result = mysql_query($Query);
-
 		$Row = mysql_fetch_array($Result);
+
 		return $Row['id'];
 	}
 
@@ -87,8 +86,8 @@
 	function findIDFromMail($eMail) {
 		$Query = "SELECT * FROM users WHERE email='$eMail'";
 		$Result = mysql_query($Query);
-
 		$Row = mysql_fetch_array($Result);
+
 		return $Row['id'];
 
 	}
@@ -97,6 +96,7 @@
 	function isAuthorized($Username, $Token) {
 		$Query = "SELECT * FROM users WHERE username='$Username'";
 		$Row = mysql_fetch_array(mysql_query($Query));
+		
 		if($Token == md5($Username . $Row['password'])) {
 			return true;
 		} else {
